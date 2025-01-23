@@ -23,6 +23,8 @@ Features
     Skill Set Display: Showcases my technical skills in an organized, visually appealing way.
     Simple Navigation: Easy-to-use navigation bar to quickly access different sections.
 
+This website can be found here:
+https://tylercarpenter22.github.io/portfolio/
 
 My HCI Website can be found here:
 https://sites.google.com/view/weeniehutjrs-ucf/home
