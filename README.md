@@ -22,3 +22,7 @@ Features
     Project Links: Each project has a detailed description and external links (to GitHub repos, live demos, etc.).
     Skill Set Display: Showcases my technical skills in an organized, visually appealing way.
     Simple Navigation: Easy-to-use navigation bar to quickly access different sections.
+
+
+My HCI Website can be found here:
+https://sites.google.com/view/weeniehutjrs-ucf/home
