@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyler Carpenter | Cybersecurity Engineer</title>
+
+    <!-- ============================================================
+         STYLES
+         - styles.css: our main stylesheet
+    ============================================================ -->
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- ============================================================
+         ICONS
+         - Font Awesome 6
+    ============================================================ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ============================================================
+         FONTS
+         - DM Serif Display: authoritative display font for headings
+         - DM Mono: monospace for technical accents
+         - DM Sans: clean modern body font
+    ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         SIDE NAVIGATION
+         Fixed on the right side. Dots correspond to each section.
+         JS adds .active to the correct dot as user scrolls.
+    ============================================================ -->
+    <nav class="side-nav" aria-label="Section navigation">
+        <ul>
+            <li><a href="#home"       class="nav-dot active" aria-label="Home"><i class="fas fa-house"></i><span class="nav-label">Home</span></a></li>
+            <li><a href="#about"      class="nav-dot"        aria-label="About"><i class="fas fa-user"></i><span class="nav-label">About</span></a></li>
+            <li><a href="#experience" class="nav-dot"        aria-label="Experience"><i class="fas fa-briefcase"></i><span class="nav-label">Experience</span></a></li>
+            <li><a href="#education"  class="nav-dot"        aria-label="Education"><i class="fas fa-graduation-cap"></i><span class="nav-label">Education</span></a></li>
+            <li><a href="#skills"     class="nav-dot"        aria-label="Skills"><i class="fas fa-code"></i><span class="nav-label">Skills</span></a></li>
+            <li><a href="#clearance"  class="nav-dot"        aria-label="Clearance &amp; Certs"><i class="fas fa-shield-halved"></i><span class="nav-label">Clearance &amp; Certs</span></a></li>
+            <li><a href="#projects"   class="nav-dot"        aria-label="Projects"><i class="fas fa-folder-open"></i><span class="nav-label">Projects</span></a></li>
+            <li><a href="#contact"    class="nav-dot"        aria-label="Contact"><i class="fas fa-envelope"></i><span class="nav-label">Contact</span></a></li>
+        </ul>
+    </nav>
+
+    <!-- ============================================================
+         THEME TOGGLE
+         Fixed top-right. JS toggles data-theme on <html>.
+    ============================================================ -->
+    <button class="theme-toggle" aria-label="Toggle light/dark mode">
+        <i class="fas fa-circle-half-stroke"></i>
+    </button>
+
+    <!-- ============================================================
+         MOBILE NAVIGATION
+         Hidden on desktop. Hamburger opens a full-screen overlay.
+    ============================================================ -->
+    <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="mobile-menu" aria-hidden="true">
+        <ul>
+            <li><a href="#home"       class="mobile-link">Home</a></li>
+            <li><a href="#about"      class="mobile-link">About</a></li>
+            <li><a href="#experience" class="mobile-link">Experience</a></li>
+            <li><a href="#education"  class="mobile-link">Education</a></li>
+            <li><a href="#skills"     class="mobile-link">Skills</a></li>
+            <li><a href="#clearance"  class="mobile-link">Clearance &amp; Certs</a></li>
+            <li><a href="#projects"   class="mobile-link">Projects</a></li>
+            <li><a href="#contact"    class="mobile-link">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- ============================================================
+         MAIN CONTENT
+         All sections live here and scroll naturally.
+    ============================================================ -->
+    <main>
+
+        <!-- ========================================================
+             SECTION 1: HERO
+             - Name, role tag, subtitle, clearance badge, CTAs
+             - Photo left, text right
+        ======================================================== -->
+        <section id="home" class="section hero">
+            <div class="hero-content">
+
+                <!-- Left: profile photo -->
+                <div class="hero-photo">
+                    <div class="photo-frame">
+                        <img src="img/profile.jpg" alt="Tyler Carpenter">
+                    </div>
+                </div>
+
+                <!-- Right: text content -->
+                <div class="hero-text">
+
+                    <!-- Monospace tag — the subtle technical accent -->
+                    <p class="hero-tag">&lt;cybersecurity-engineer /&gt;</p>
+
+                    <h1 class="hero-name">Tyler <span class="accent">Carpenter</span></h1>
+
+                    <p class="hero-sub">
+                        Technical Intern at Northrop Grumman supporting a classified Cross Domain Solution.
+                        B.S. IT student at UCF specializing in cyber systems and software engineering.
+                    </p>
+
+                    <!-- Clearance badge — key differentiator, visible immediately -->
+                    <div class="clearance-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>Interim Secret Clearance &mdash; Active</span>
+                    </div>
+
+                    <!-- CTA buttons -->
+                    <div class="hero-ctas">
+                        <a href="resume.pdf" download class="btn btn-primary">
+                            <i class="fas fa-download"></i> Resume
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            Get In Touch
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Animated scroll indicator at the bottom of the hero -->
+            <div class="scroll-indicator" aria-hidden="true">
+                <span class="scroll-line"></span>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 2: ABOUT
+             - Short bio focused on who you are and what you're after
+             - Quick facts panel on the right
+        ======================================================== -->
+        <section id="about" class="section about">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">01 &mdash; About</p>
+                    <h2 class="section-title">Who I Am</h2>
+                </div>
+
+                <div class="about-content">
+
+                    <!-- Bio text -->
+                    <div class="about-text">
+                        <p>
+                            I'm a senior at the University of Central Florida completing a B.S. in Information
+                            Technology with a Secure Computing &amp; Networks minor, currently interning at
+                            Northrop Grumman in support of a classified Cross Domain Solution program. My work
+                            sits at the intersection of cybersecurity and software engineering &mdash; hardening
+                            systems, automating infrastructure tasks, and building things that are both functional
+                            and secure.
+                        </p>
+                        <p>
+                            I'm actively seeking full-time roles in cybersecurity or software/systems engineering
+                            with a security focus, ideally in the defense or federal space. I bring cleared,
+                            hands-on experience in a professional DoD environment and a drive to keep building.
+                        </p>
+                        <a href="resume.pdf" download class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+
+                    <!-- Quick facts panel -->
+                    <div class="about-facts">
+                        <div class="fact-item">
+                            <p class="fact-label">Location</p>
+                            <p class="fact-value">Orlando, FL</p>
+                        </div>
+                        <div class="fact-item">
+                            <p class="fact-label">Degree</p>
+                            <p class="fact-value">B.S. Information Technology</p>
+                        </div>
+                        <div class="fact-item">
+                            <p class="fact-label">Graduating</p>
+                            <p class="fact-value">May 2026</p>
+                        </div>
+                        <div class="fact-item">
+                            <p class="fact-label">Focus</p>
+                            <p class="fact-value">Cyber &amp; Software Engineering</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 3: EXPERIENCE
+             - One entry per role, most recent first
+             - Strong action-verb bullets pulled from the resume
+        ======================================================== -->
+        <section id="experience" class="section experience">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">02 &mdash; Experience</p>
+                    <h2 class="section-title">Where I've Worked</h2>
+                </div>
+
+                <div class="timeline">
+
+                    <!-- ── Northrop Grumman ── -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta">
+                                <span class="timeline-date">June 2025 &mdash; Present</span>
+                                <span class="timeline-company">Northrop Grumman</span>
+                            </div>
+                            <h3 class="timeline-role">College Technical Intern &mdash; CHORD Program</h3>
+                            <ul class="timeline-bullets">
+                                <li>Supported infrastructure, software, and cybersecurity operations for the Cross-Domain Handling of Releasable Data (CHORD) program, a classified Cross Domain Solution (CDS) operating on DoD networks.</li>
+                                <li>Hardened RHEL systems using SELinux policy configuration and enforced security baselines across classified network infrastructure in compliance with program security requirements.</li>
+                                <li>Automated recurring administrative tasks using Python scripting, improving team efficiency and reducing manual workload across the infrastructure team.</li>
+                                <li>Authored the Data Owners Guide (DOG) and contributed to Vendor Self Assessments (VSAs), producing technical documentation following program and vendor best practices.</li>
+                                <li>Administered access controls and implemented security measures for classified environments; performed Tier 1 troubleshooting and hardware/software installation.</li>
+                                <li>Performed unit testing and cross-functional support in an Agile environment using the Atlassian suite (Jira, Confluence); managed virtual machines using VMware.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ── UCF Teaching Assistant ── -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta">
+                                <span class="timeline-date">Jan. 2025 &mdash; May 2025</span>
+                                <span class="timeline-company">University of Central Florida</span>
+                            </div>
+                            <h3 class="timeline-role">Undergraduate Teaching Assistant &mdash; Computer Architecture</h3>
+                            <ul class="timeline-bullets">
+                                <li>Supported approximately 150 students through weekly office hours, providing targeted tutoring in assembly language, CPU pipelining, cache memory, and memory hierarchy.</li>
+                                <li>Graded assignments with detailed written feedback to reinforce understanding of low-level programming concepts including instruction set architecture and hardware simulation.</li>
+                                <li>Assisted students in debugging and optimizing projects involving low-level programming and hardware simulation tools, applying systematic problem-solving approaches.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 4: EDUCATION
+             - Degree, university, minor, graduation date
+             - Hack@UCF callout
+        ======================================================== -->
+        <section id="education" class="section education">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">03 &mdash; Education</p>
+                    <h2 class="section-title">Education</h2>
+                </div>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-meta">
+                                <span class="timeline-date">Expected May 2026</span>
+                                <span class="timeline-company">University of Central Florida</span>
+                            </div>
+                            <h3 class="timeline-role">B.S. Information Technology &mdash; Secure Computing &amp; Networks Minor</h3>
+                            <ul class="timeline-bullets">
+                                <li>Active member of <strong>Hack@UCF</strong>, UCF's competitive cybersecurity and Capture the Flag (CTF) team.</li>
+                                <!-- Add relevant coursework or honors here if desired -->
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 5: SKILLS
+             - Two categories: Languages & Frameworks, Tools & Platforms
+             - Logo tiles with hover tooltips
+             - Update img/ filenames to match your actual image files
+        ======================================================== -->
+        <section id="skills" class="section skills">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">04 &mdash; Skills</p>
+                    <h2 class="section-title">What I Work With</h2>
+                </div>
+
+                <div class="skills-grid">
+
+                    <!-- Languages & Frameworks -->
+                    <div class="skill-category">
+                        <h3 class="category-title">Languages &amp; Frameworks</h3>
+                        <div class="skill-logos">
+                            <div class="skill-logo"><img src="img/py.PNG"     alt="Python"><span class="tooltip">Python</span></div>
+                            <div class="skill-logo"><img src="img/java.PNG"   alt="Java"><span class="tooltip">Java</span></div>
+                            <div class="skill-logo"><img src="img/c.PNG"      alt="C"><span class="tooltip">C</span></div>
+                            <div class="skill-logo"><img src="img/js.PNG"     alt="JavaScript"><span class="tooltip">JavaScript</span></div>
+                            <div class="skill-logo"><img src="img/html.PNG"   alt="HTML"><span class="tooltip">HTML</span></div>
+                            <div class="skill-logo"><img src="img/css.PNG"    alt="CSS"><span class="tooltip">CSS</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Platforms -->
+                    <div class="skill-category">
+                        <h3 class="category-title">Tools &amp; Platforms</h3>
+                        <div class="skill-logos">
+                            <div class="skill-logo"><img src="img/linux.PNG"     alt="Linux"><span class="tooltip">Linux (RHEL / Kali)</span></div>
+                            <div class="skill-logo"><img src="img/rhel.PNG"   alt="RHEL"><span class="tooltip">RHEL</span></div>
+                            <div class="skill-logo"><img src="img/SELinux.PNG"   alt="SELinux"><span class="tooltip">SELinux</span></div>
+                            <div class="skill-logo"><img src="img/virtualbox.PNG"    alt="VirtualBox"><span class="tooltip">VirtualBox</span></div>
+                            <div class="skill-logo"><img src="img/git.PNG"       alt="Git"><span class="tooltip">Git</span></div>
+                            <div class="skill-logo"><img src="img/mysql.PNG"     alt="MySQL"><span class="tooltip">MySQL</span></div>
+                            <div class="skill-logo"><img src="img/wireshark.PNG" alt="Wireshark"><span class="tooltip">Wireshark</span></div>
+                            <div class="skill-logo"><img src="img/jira.PNG"      alt="Jira"><span class="tooltip">Jira / Confluence</span></div>
+                            <div class="skill-logo"><img src="img/aws.PNG"       alt="AWS"><span class="tooltip">AWS</span></div>
+                            <div class="skill-logo"><img src="img/vs.PNG"        alt="VS Code"><span class="tooltip">VS Code</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 6: CLEARANCE & CERTIFICATIONS
+             - Clearance card gets the special accent treatment
+             - One card per cert, use fa-award for badges
+        ======================================================== -->
+        <section id="clearance" class="section clearance">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">05 &mdash; Clearance &amp; Certifications</p>
+                    <h2 class="section-title">Credentials</h2>
+                </div>
+
+                <div class="credentials-grid">
+
+                    <!-- Security clearance — displayed first and most prominently -->
+                    <div class="credential-card clearance-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div class="credential-info">
+                            <p class="credential-label">Security Clearance</p>
+                            <p class="credential-value">Interim Secret</p>
+                            <p class="credential-issuer">U.S. Department of Defense &mdash; Active</p>
+                        </div>
+                    </div>
+
+                    <!-- CompTIA Security+ -->
+                    <div class="credential-card cert-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="credential-info">
+                            <p class="credential-label">Certification</p>
+                            <p class="credential-value">CompTIA Security+</p>
+                            <p class="credential-issuer">CompTIA &mdash; 2025&ndash;2028</p>
+                        </div>
+                    </div>
+
+                    <!-- TestOut Cyber Defense Pro -->
+                    <div class="credential-card cert-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="credential-info">
+                            <p class="credential-label">Certification</p>
+                            <p class="credential-value">Cyber Defense Pro</p>
+                            <p class="credential-issuer">TestOut &mdash; 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- TestOut IT Fundamentals Pro -->
+                    <div class="credential-card cert-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="credential-info">
+                            <p class="credential-label">Certification</p>
+                            <p class="credential-value">IT Fundamentals Pro</p>
+                            <p class="credential-issuer">TestOut &mdash; 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- CompTIA Cloud Security Foundations Badge -->
+                    <div class="credential-card cert-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="credential-info">
+                            <p class="credential-label">Badge</p>
+                            <p class="credential-value">Cloud Security Foundations</p>
+                            <p class="credential-issuer">CompTIA &mdash; Trained</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 7: PROJECTS
+             - Two real projects from the resume
+             - Update href values with your actual GitHub repo URLs
+             - Replace img/crm.png and img/dnd.png with screenshots
+        ======================================================== -->
+        <section id="projects" class="section projects">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">06 &mdash; Projects</p>
+                    <h2 class="section-title">What I've Built</h2>
+                </div>
+
+                <div class="projects-grid">
+
+                    <!-- ── CRM System ── -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <!-- Replace img/crm.png with an actual screenshot -->
+                            <img src="img/crm.png" alt="CRM System">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <!-- Update with the specific repo URL -->
+                                    <a href="https://github.com/tylercarpenter22" target="_blank" aria-label="GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Customer Relationship Management System</h3>
+                            <p class="project-desc">
+                                Full-stack CRM web application built with Python Django featuring secure user
+                                authentication, role-based access control, and a MySQL database with full CRUD
+                                functionality. Deployed for real-world use.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Django</span>
+                                <span class="tag">MySQL</span>
+                                <span class="tag">HTML/CSS</span>
+                                <span class="tag">Git</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── D&D Character Sheet ── -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <!-- Replace img/dnd.png with an actual screenshot -->
+                            <img src="img/dnd.png" alt="D&amp;D Character Sheet App">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <!-- Update with the specific repo URL -->
+                                    <a href="https://github.com/tylercarpenter22" target="_blank" aria-label="GitHub">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">D&amp;D Character Sheet Creator &amp; Manager</h3>
+                            <p class="project-desc">
+                                Solo full-stack desktop application for creating and managing Dungeons &amp; Dragons
+                                character sheets. Built with a Java Swing GUI and JSON-based persistent storage
+                                using the Jackson library for serialization and deserialization.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Java</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">JSON</span>
+                                <span class="tag">OOP</span>
+                                <span class="tag">Swing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more project-card blocks here as you build more projects -->
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 8: CONTACT
+             - Email (JS adds copy-to-clipboard on click), location
+             - LinkedIn and GitHub social links with real URLs
+        ======================================================== -->
+        <section id="contact" class="section contact">
+            <div class="section-inner">
+
+                <div class="section-header">
+                    <p class="section-tag">07 &mdash; Contact</p>
+                    <h2 class="section-title">Get In Touch</h2>
+                </div>
+
+                <div class="contact-content">
+                    <p class="contact-intro">
+                        I'm actively looking for full-time opportunities starting May 2026.
+                        Whether you have a role in mind or just want to connect, feel free to reach out.
+                    </p>
+
+                    <!-- Contact details -->
+                    <div class="contact-details">
+
+                        <!-- Email — JS adds copy-to-clipboard interaction on click -->
+                        <a href="/cdn-cgi/l/email-protection#c1b5b8ada4b3a2a0b3b1a4afb5a4b3f3f381a6aca0a8adefa2aeac" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><span class="__cf_email__" data-cfemail="36424f5a5344555744465358425344040476515b575f5a1855595b">[email&#160;protected]</span></span>
+                        </a>
+
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Orlando, FL</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Social links -->
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/tyler-carpenter22" target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/tylercarpenter22" target="_blank" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         - app.js: scroll spy, theme toggle, mobile menu,
+           smooth scroll, scroll animations, email copy interaction
+    ============================================================ -->
+    <script src="js/app.js" defer></script>
+
+</body>
+</html>
