@@ -1,0 +1,1233 @@
+/*  ============================================================
+    Portfolio Styles — Tyler Carpenter
+    
+    Table of Contents:
+    1.  CSS Variables (themes)
+    2.  Reset & Base
+    3.  Typography
+    4.  Layout Utilities
+    5.  Buttons
+    6.  Side Navigation
+    7.  Theme Toggle
+    8.  Mobile Navigation
+    9.  Hero Section
+    10. About Section
+    11. Experience / Timeline Section
+    12. Skills Section
+    13. Clearance & Certs Section
+    14. Projects Section
+    15. Contact Section
+    16. Scroll Animations
+    17. Media Queries (responsive)
+    ============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES
+   - Dark mode is default (data-theme="dark" on <html>)
+   - Light mode variables override when JS toggles to data-theme="light"
+   - Navy is our key secondary/accent color as discussed
+============================================================ */
+
+:root {
+    /* Shared across both themes */
+    --navy:           #0a192f;
+    --navy-mid:       #112240;
+    --navy-light:     #1d3461;
+    --accent:         #4a9eff;        /* bright blue — pops on navy */
+    --accent-dim:     rgba(74, 158, 255, 0.12);
+
+    --font-display:   'DM Serif Display', serif;
+    --font-body:      'DM Sans', sans-serif;
+    --font-mono:      'DM Mono', monospace;
+
+    --radius-sm:      6px;
+    --radius-md:      12px;
+    --radius-lg:      20px;
+
+    --transition:     all 0.3s ease;
+    --transition-slow: all 0.6s ease;
+
+    --shadow-sm:      0 2px 8px rgba(0, 0, 0, 0.15);
+    --shadow-md:      0 4px 24px rgba(0, 0, 0, 0.25);
+    --shadow-lg:      0 8px 48px rgba(0, 0, 0, 0.35);
+
+    --section-pad:    6rem 10%;
+    --section-max:    1100px;
+}
+
+/* Dark theme (default) */
+[data-theme="dark"] {
+    --bg-primary:     #0a0f1e;        /* very deep navy-black */
+    --bg-secondary:   #0f1729;        /* slightly lighter panel bg */
+    --bg-card:        #111827;        /* card surfaces */
+    --bg-card-hover:  #162032;
+
+    --text-primary:   #e8edf5;
+    --text-secondary: #8892a4;
+    --text-muted:     #4a5568;
+
+    --border:         rgba(255, 255, 255, 0.07);
+    --border-accent:  rgba(74, 158, 255, 0.3);
+
+    --nav-bg:         rgba(10, 15, 30, 0.85);
+}
+
+/* Light theme */
+[data-theme="light"] {
+    --bg-primary:     #f4f6fb;
+    --bg-secondary:   #ffffff;
+    --bg-card:        #ffffff;
+    --bg-card-hover:  #f0f4ff;
+
+    --text-primary:   #0a192f;
+    --text-secondary: #3d5a80;
+    --text-muted:     #8899aa;
+
+    --border:         rgba(0, 0, 0, 0.08);
+    --border-accent:  rgba(74, 158, 255, 0.4);
+
+    --nav-bg:         rgba(244, 246, 251, 0.85);
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+============================================================ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+/* ============================================================
+   3. TYPOGRAPHY
+============================================================ */
+
+h1, h2, h3, h4 {
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+/* Section numbering tag — e.g. "01 — About" */
+.section-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+/* Main section heading */
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+}
+
+/* Section header block — tag + title stacked */
+.section-header {
+    margin-bottom: 3rem;
+}
+
+
+/* ============================================================
+   4. LAYOUT UTILITIES
+============================================================ */
+
+.section {
+    padding: var(--section-pad);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Inner wrapper caps width and centers content */
+.section-inner {
+    width: 100%;
+    max-width: var(--section-max);
+    margin: 0 auto;
+}
+
+/* Alternating section background for visual separation */
+.section:nth-child(even) {
+    background-color: var(--bg-secondary);
+}
+
+
+/* ============================================================
+   5. BUTTONS
+============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 30px;          /* pill shape — matches original */
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+/* Primary: filled accent */
+.btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+    border: 2px solid var(--accent);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent);
+}
+
+/* Secondary: outline only */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+
+/* ============================================================
+   6. SIDE NAVIGATION
+   - Fixed right side, vertical stack of dots
+   - Tooltip label appears on hover to the left of each dot
+   - JS adds .active to the current section's dot
+============================================================ */
+
+.side-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.side-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Each icon button */
+.nav-dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Remove the pseudo-element dot — no longer needed */
+.nav-dot::after {
+    display: none;
+}
+
+/* Active state — filled accent background */
+.nav-dot.active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 16px rgba(74, 158, 255, 0.35);
+}
+
+/* Hover state */
+.nav-dot:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* Tooltip label — slides in from the right on hover */
+.nav-label {
+    position: absolute;
+    right: 52px;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(6px);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-dot:hover .nav-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ============================================================
+   7. THEME TOGGLE
+   - Fixed top-right circle button
+============================================================ */
+
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: rotate(180deg);
+}
+
+
+/* ============================================================
+   8. MOBILE NAVIGATION
+   - Hamburger button replaces side nav on small screens
+   - Full-screen overlay menu
+============================================================ */
+
+.hamburger {
+    display: none;               /* hidden on desktop */
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 300;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+/* Three lines of the hamburger icon */
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* Animate to X when open */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Full-screen overlay */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-primary);
+    z-index: 250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.mobile-link {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.mobile-link:hover {
+    color: var(--accent);
+}
+
+
+/* ============================================================
+   9. HERO SECTION
+============================================================ */
+
+.hero {
+    min-height: 100vh;
+    padding: 0 10%;
+    position: relative;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;   /* photo left, text right */
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    max-width: var(--section-max);
+    margin: 0 auto;
+}
+
+/* Photo container */
+.hero-photo {
+    display: flex;
+    justify-content: center;
+}
+
+.photo-frame {
+    position: relative;
+    width: 320px;
+    height: 380px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);            /* subtle desaturation — technical feel */
+    transition: filter 0.4s ease;
+}
+
+.photo-frame:hover img {
+    filter: grayscale(0%);             /* full color on hover */
+}
+
+/* Decorative accent border behind the photo */
+.photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-md);
+    opacity: 0.3;
+    z-index: -1;
+    transform: translate(8px, 8px);
+}
+
+/* Hero text side */
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Monospace tag line — the technical accent */
+.hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+}
+
+.hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.hero-name .accent {
+    color: var(--accent);
+}
+
+.hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.8;
+}
+
+/* Clearance badge — the key differentiator callout */
+.clearance-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    border-radius: 30px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    width: fit-content;
+}
+
+/* CTA button row */
+.hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+/* Scroll indicator — subtle animated line at bottom of hero */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-line {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(1.1); }
+}
+
+
+/* ============================================================
+   10. ABOUT SECTION
+============================================================ */
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.about-text p {
+    color: var(--text-secondary);
+    line-height: 1.9;
+}
+
+/* Quick facts panel on the right */
+.about-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.fact-item {
+    padding: 1.25rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.fact-item:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.fact-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+}
+
+.fact-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+
+/* ============================================================
+   11. EXPERIENCE / TIMELINE SECTION
+============================================================ */
+
+.timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Vertical line running down the left */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 4rem;
+    padding-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+/* The dot on the timeline line */
+.timeline-dot {
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--accent);
+    transition: var(--transition);
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: var(--accent);
+}
+
+.timeline-content {
+    padding: 1.5rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.timeline-content:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+}
+
+/* Date + company row */
+.timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.timeline-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background-color: var(--accent-dim);
+    padding: 0.2rem 0.6rem;
+    border-radius: 30px;
+    border: 1px solid var(--border-accent);
+}
+
+.timeline-company {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.timeline-role {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* Bullet list inside a timeline card — used for experience & education entries */
+.timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+.timeline-bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.75;
+}
+
+/* Small accent dot before each bullet item */
+.timeline-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--accent);
+}
+
+
+/* ============================================================
+   12. SKILLS SECTION
+============================================================ */
+
+.skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.skill-category {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.category-title {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.skill-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Individual skill logo tile */
+.skill-logo {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    cursor: default;
+}
+
+.skill-logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.skill-logo:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tooltip above logo on hover */
+.skill-logo .tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.skill-logo:hover .tooltip {
+    opacity: 1;
+}
+
+
+/* ============================================================
+   13. CLEARANCE & CERTIFICATIONS SECTION
+============================================================ */
+
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.credential-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.credential-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Clearance card gets a stronger accent treatment */
+.clearance-card {
+    border-color: var(--border-accent);
+    background-color: var(--accent-dim);
+}
+
+.credential-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.credential-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.3rem;
+}
+
+.credential-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.credential-issuer {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+
+/* ============================================================
+   14. PROJECTS SECTION
+============================================================ */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+}
+
+.project-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Image area with overlay on hover */
+.project-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.04);
+}
+
+/* Overlay with links appears on hover */
+.project-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 25, 47, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: #fff;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.project-links a:hover {
+    background-color: #fff;
+    color: var(--navy);
+}
+
+/* Project info below the image */
+.project-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+}
+
+.project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    flex: 1;
+}
+
+/* Tech stack tags */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.65rem;
+    background-color: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--border-accent);
+    border-radius: 30px;
+    letter-spacing: 0.05em;
+}
+
+
+/* ============================================================
+   15. CONTACT SECTION
+============================================================ */
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 600px;
+}
+
+.contact-intro {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.9;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.contact-item i {
+    color: var(--accent);
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-item:hover {
+    color: var(--accent);
+}
+
+/* Social icon links row */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.social-link i {
+    font-size: 1rem;
+}
+
+.social-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   16. SCROLL ANIMATIONS
+   - Elements start invisible and slightly below their position
+   - JS adds .visible class when they enter the viewport
+   - CSS handles the actual transition
+============================================================ */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delay utility classes — apply to children */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+
+/* ============================================================
+   17. MEDIA QUERIES
+   - 1024px: tablet adjustments
+   - 768px:  mobile — side nav hides, hamburger shows
+   - 480px:  small phone tweaks
+============================================================ */
+
+@media (max-width: 1024px) {
+    :root {
+        --section-pad: 5rem 6%;
+    }
+
+    .hero-content {
+        gap: 2.5rem;
+    }
+
+    .photo-frame {
+        width: 260px;
+        height: 320px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-pad: 4rem 5%;
+    }
+
+    /* Hide side nav, show hamburger */
+    .side-nav   { display: none; }
+    .hamburger  { display: flex; }
+
+    /* Stack hero vertically */
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 6rem 0 3rem;
+    }
+
+    .hero-photo {
+        order: -1;
+    }
+
+    .photo-frame {
+        width: 200px;
+        height: 240px;
+        margin: 0 auto;
+    }
+
+    .hero-sub {
+        max-width: 100%;
+    }
+
+    .hero-ctas,
+    .clearance-badge {
+        justify-content: center;
+    }
+
+    .clearance-badge {
+        margin: 0 auto;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .timeline-item {
+        padding-left: 2.5rem;
+    }
+
+    .timeline-dot {
+        left: 2px;
+    }
+
+    /* Theme toggle repositioned for mobile */
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-name {
+        font-size: 2.2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .credentials-grid {
+        grid-template-columns: 1fr;
+    }
+}
